@@ -30,18 +30,19 @@ def extract_info(node):
     score = node.score
     for relationship, related_node_info in relationships.items():
         node_id = related_node_info.node_id
-    res = {}
-    res["RelevanceScore"] = score
-    res["FileName"] = node_id
-    res["Facts"] = text
-    res["CaseSummary"] = summary
+    data,res = {},{}
+    data["RelevanceScore"] = score
+    data["FileName"] = node_id
+    data["Facts"] = text
+    data["CaseSummary"] = summary
+    res["Output"] = data
     return res
 
 def output(query): 
     response = query_engine.retrieve(query)
-    res = {}
+    res = []
     for i in range(len(response)):
         node_info = extract_info(response[i])
-        res[f"Output_{i}"] = node_info
+        res.append(node_info)
     
     return res
