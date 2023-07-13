@@ -2,3 +2,4 @@ llama-index
 openai
 langchain
 python-dotenv
+faiss-cpu
